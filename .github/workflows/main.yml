@@ -1,16 +1,16 @@
-name: Deploy Vite.js to FTP
+yml name: Deploy ViteJS App to FTP
 
 on:
   push:
     branches:
-      - main  # Déclenche le workflow sur les push vers la branche main
+      - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set up Node.js
@@ -24,11 +24,11 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Deploy to FTP server
-        uses: SamKirkland/FTP-Deploy-Action@4.2.0
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.1
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: dist
-          server-dir: /path/to/your/server/directory
+          server-dir: /
