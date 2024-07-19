@@ -1,4 +1,4 @@
-yml name: Deploy ViteJS App to FTP
+name: Deploy ViteJS App to FTP
 
 on:
   push:
